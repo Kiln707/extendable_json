@@ -16,7 +16,7 @@ class _JSONDecoder(j.JSONDecoder):
         for type_, handler in json_deserialize.registry.items():
             try:
                 o = handler(obj)
-                if o:
+                if o and isinstance(o, type_):
                     return o
             except:
                 pass

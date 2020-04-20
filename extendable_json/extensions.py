@@ -1,6 +1,7 @@
 from functools import singledispatch
 from datetime import datetime
 
+"""test"""
 @singledispatch
 def json_serialize(val):
     """Used by default."""
