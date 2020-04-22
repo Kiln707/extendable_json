@@ -1,10 +1,13 @@
 import json as j
+import sys
 from . import  json_serialize, json_deserialize
 
 class _JSONEncoder(j.JSONEncoder):
     def default(self, obj):
         for type_, handler in json_serialize.registry.items():
             #Don't run for baseline object. It is handled by json by default, we do not need to run it as it will always run, and run first.
+            if type_ is object:
+                continue
             if isinstance(obj, type_) and type_ is not object:
                 return handler(obj)
         return super(_JSONEncoder, self).default(obj)

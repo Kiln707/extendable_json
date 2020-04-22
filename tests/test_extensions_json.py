@@ -13,7 +13,6 @@ def serialize_test(val):
 
 @json.json_deserialize.register(TestObject)
 def deserialize_test(val):
-    print(val)
     if serialization_key in val:
         return TestObject()
     return None
@@ -34,10 +33,4 @@ def test_deserialization():
     obj = json.loads(serialized_test)
     assert isinstance(obj, TestObject)
 
-def test_exception_serialization():
-    try:
-        raise Exception("Test")
-    except Exception as e:
-        #print(json.dumps(e))
-        print(e.__dict__)
-        assert False
+# datetime

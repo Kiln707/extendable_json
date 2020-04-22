@@ -50,4 +50,5 @@ Return the newly created object.
 
 """
 from .extensions import json_serialize, json_deserialize
+from .exception_serialization import json_exception, json_serialize_exception, json_deserialize_exception
 from .extendable_json import dump, dumps, load, loads
