@@ -1,10 +1,11 @@
 from functools import singledispatch
 from datetime import datetime
 
-"""test"""
 @singledispatch
 def json_serialize(val):
-    """Used by default."""
+    """Decorator used to add objects to serialization registry.
+    Please see above documentation on how to use.
+    """
     return str(val)
 
 @json_serialize.register(datetime)
@@ -21,25 +22,16 @@ def json_exception(val):
     data['type'] = val.__class__
     data['val'] = val
     attributes = {}
-    for attr, val in val.dict().items():
-        attributes[attr] = val
-    data['attributes'] = attributes
-    return data
-
-@json_serialize.register(object)
-def json_object(val):
-    data = {}
-    data['type'] = val.__class__
-    data['val'] = val
-    attributes = {}
-    for attr, val in val.dict().items():
+    for attr, val in val.__dict__.items():
         attributes[attr] = val
     data['attributes'] = attributes
     return data
 
 @singledispatch
 def json_deserialize(val):
-    """Used by default."""
+    """Decorator used to add objects to deserialization registry.
+    Please see above documentation on how to use.
+    """
     return val
 
 @json_deserialize.register(datetime)
@@ -53,14 +45,6 @@ def json_datetime(val):
 
 @json_deserialize.register(Exception)
 def json_exception(val):
-    obj = object()
-    obj.__class__ = val['type']
-    for attr, val in val['attributes'].items():
-        setattr(obj, attr, val)
-    return obj
-
-@json_deserialize.register(object)
-def json_object(val):
     obj = object()
     obj.__class__ = val['type']
     for attr, val in val['attributes'].items():
