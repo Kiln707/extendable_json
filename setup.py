@@ -10,7 +10,7 @@ cmd_classes = {}
 if CleanCommand is not None:
     cmd_classes['clean'] = CleanCommand
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 tests_require = [

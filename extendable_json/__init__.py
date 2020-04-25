@@ -48,7 +48,33 @@ Return the newly created object.
         myObject.attrib = val['Attrib']
         return myObject
 
+=============================
+Exceptions
+=============================
+
+Exceptions may be serialized or deserialized.
+
+Exceptions may be serialized within try/except block
+
+.. code-block:: python
+
+  try:
+      # Exception thrown
+  except Exception as e:
+      import extendable_json as json
+      json.dumps(e)
+
+Once deserialized exceptions may be raised and/or the Traceback
+is available with the traceback attr.
+
+.. code-block:: python
+
+    e = json.loads(exeption_json)
+    raise e #To raise exception
+    print(e.traceback) #To print traceback
+
 """
 from .extensions import json_serialize, json_deserialize
 from .exception_serialization import json_exception, json_serialize_exception, json_deserialize_exception
 from .extendable_json import dump, dumps, load, loads
+from .version import version, version_string
