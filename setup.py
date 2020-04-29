@@ -10,16 +10,13 @@ cmd_classes = {}
 if CleanCommand is not None:
     cmd_classes['clean'] = CleanCommand
 
-with open("README.rst", "r") as fh:
+with open("README.md", "r") as fh:
     long_description = fh.read()
 
 tests_require = [
     'pytest',
     'pytest-cov',
     'pytest-pep8',
-]
-
-install_requires = [
 ]
 
 setup_requires = [
@@ -32,11 +29,10 @@ documentation_requires = ['recommonmark']
 from sphinx.setup_command import BuildDoc
 cmdclass = {'sphinx': BuildDoc}
 
-name = "Extendable JSON"
-version = "0.0.1"
+from extendable_json import version_string as version
 
 setup(
-    name=name,
+    name = "Extendable JSON",
     version=version,
     release=version,
     author="Steven Swanson",
