@@ -1,4 +1,4 @@
-# Welcome to Extendable JSON’s documentation!
+# Extendable JSON
 
 Extendable JSON is an extendable drop in replacement of Python’s JSON library.
 By using @json_serialize and @json_deserialize decorators to enable custom objects

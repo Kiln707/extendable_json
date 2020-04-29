@@ -10,7 +10,7 @@ cmd_classes = {}
 if CleanCommand is not None:
     cmd_classes['clean'] = CleanCommand
 
-with open("README.md", "r") as fh:
+with open("README.md", "r", encoding='utf-8') as fh:
     long_description = fh.read()
 
 tests_require = [
@@ -30,9 +30,10 @@ from sphinx.setup_command import BuildDoc
 cmdclass = {'sphinx': BuildDoc}
 
 from extendable_json import version_string as version
+name = "Extendable JSON"
 
 setup(
-    name = "Extendable JSON",
+    name = name,
     version=version,
     release=version,
     author="Steven Swanson",
@@ -40,7 +41,7 @@ setup(
     description="Drop in replacement of json, to quickly extend serializing capabilities",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="",
+    url="https://github.com/Kiln707/extendable_json",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
